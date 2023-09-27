@@ -26,13 +26,28 @@
   </div>
   <div class="timelines">
     <div v-for="timeline in timelines" :key="timeline" class="timeline">
-      <div class="thumbnail">
-        <img alt="thumbnail" src="./assets/thumbnail.jpg" />
+      <div class="top-bar">
+        <div class="thumbnail">
+          <img alt="thumbnail" src="./assets/thumbnail.jpg" />
+        </div>
+        <span style="font-weight: 600">{{ timeline.name }}</span
+        ><span style="padding-left: 10px">1일전</span>
+        <font-awesome-icon :icon="['fas', 'ellipsis']" class="timeline-icon" />
       </div>
-      <span>{{ timeline.name }}</span>
       <div class="images">
         <!-- <img alt="image" src="./assets/story.png" /> -->
         <img :src="timeline.img" />
+      </div>
+      <div class="buttons">
+        <div class="icon heart">
+          <font-awesome-icon :icon="['far', 'heart']" />
+        </div>
+        <div class="icon message">
+          <font-awesome-icon :icon="['far', 'message']" />
+        </div>
+        <div class="icon bookmark">
+          <font-awesome-icon :icon="['far', 'bookmark']" />
+        </div>
       </div>
     </div>
   </div>
@@ -48,7 +63,7 @@ export default {
     return {
       price1: 50000,
       price2: 30000,
-      products: ["역삼동원룸", "천호동원룸", "마포고원룸"],
+      products: ["역삼동원룸", "천호동원룸", "마포동원룸"],
       reports: 0,
       users: users,
       timelines: timelines,
@@ -111,8 +126,9 @@ ul {
 }
 
 .menu .logo {
-  width: 100px;
-  height: 30px;
+  width: 103px;
+  height: 29px;
+  margin: 30px;
 }
 
 .menu li {
@@ -147,6 +163,11 @@ ul {
   margin: 15px;
 }
 
+img {
+  width: 100%;
+  height: 100%;
+}
+
 .timelines {
   position: relative;
   height: 3000px;
@@ -159,6 +180,10 @@ ul {
   width: 500px;
   height: 850px;
   border: 1px solid black;
+}
+
+.timelines .top-bar {
+  position: relative;
   display: flex;
 }
 
@@ -171,12 +196,40 @@ ul {
   float: left;
 }
 
-.timelines .images {
+.timeline-icon {
   position: absolute;
+  width: 24px;
+  height: 24px;
+}
+
+.timlines .timeline-icon {
+  right: 10px;
+}
+
+.timelines .images {
   left: 0;
   top: 100px;
   height: 585px;
   width: 470px;
   overflow: hidden;
+}
+
+.buttons {
+  position: relative;
+  border: 1px solid black;
+  height: 40px;
+  width: 100%;
+  margin: 5px 0;
+  display: flex;
+}
+
+.buttons .icon {
+  height: 36px;
+  width: 36px;
+}
+
+.buttons .icon.bookmark {
+  position: absolute;
+  right: 10px;
 }
 </style>
