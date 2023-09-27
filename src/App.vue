@@ -1,12 +1,21 @@
 <template>
-  <div v-if="modal" class="black-bg">
-    <div class="white-bg">
-      <h4>상세페이지</h4>
-      <p>상세페이지내용임</p>
-      <button @click="modal = false">Close</button>
-    </div>
+  <ModalComponent :msg="modalMessage" @close="modalOff" v-if="modal" />
+
+  <div>
+    <ul class="menu">
+      <img class="logo" alt="instargam logo" src="./assets/logo.png" />
+      <li><font-awesome-icon icon="fa-solid fa-house" /><span>홈</span></li>
+      <li>
+        <font-awesome-icon :icon="['fas', 'magnifying-glass']" /><span
+          >검색</span
+        >
+      </li>
+      <li>
+        <font-awesome-icon :icon="['far', 'message']" /><span>메세지</span>
+      </li>
+      <li><font-awesome-icon :icon="['fas', 'user']" /><span>프로필</span></li>
+    </ul>
   </div>
-  <img alt="Vue logo" src="./assets/logo.png" @click="modal = true" />
   <div v-for="item in rooms" :key="item">
     <h4>{{ item.name }}</h4>
     <p>{{ item.price }}만원</p>
@@ -17,6 +26,7 @@
 
 <script>
 import rooms from "./assets/data.js";
+import ModalComponent from "./components/Modal.vue";
 
 export default {
   name: "App",
@@ -26,16 +36,23 @@ export default {
       price2: 30000,
       products: ["역삼동원룸", "천호동원룸", "마포고원룸"],
       reports: 0,
-      modal: false,
       rooms: rooms,
+      modal: false,
+      modalMessage: null,
     };
   },
   methods: {
-    increase() {
-      this.reports++;
+    modalOn(msg) {
+      this.modalMessage = msg;
+      this.modal = true;
+    },
+    modalOff() {
+      this.modal = false;
     },
   },
-  components: {},
+  components: {
+    ModalComponent: ModalComponent,
+  },
 };
 </script>
 
@@ -55,22 +72,39 @@ body {
 div {
   box-sizing: border-box;
 }
-.black-bg {
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  padding: 20px;
+
+ul {
+  list-style: none;
 }
-.white-bg {
-  width: 100%;
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
+
+.menu {
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 200px;
+}
+
+.menu .logo {
+  width: 100px;
+  height: 30px;
+}
+
+.menu li {
+  width: 220px;
+  height: 56px;
+  text-align: left;
+  padding: 12px;
+  font-size: 24px;
+}
+
+.menu li span {
+  padding-left: 16px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 button {
   height: 30px;
+  width: 100px;
 }
 </style>
