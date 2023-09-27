@@ -1,24 +1,28 @@
-var rooms = [
+var users = [
   {
-    name: "청담동원룸",
-    price: 1000,
-    report: 0,
+    name: "31_tree",
   },
   {
-    name: "보문동원룸",
-    price: 2000,
-    report: 0,
+    name: "615_memo",
   },
   {
-    name: "안암동원룸",
-    price: 3000,
-    report: 0,
-  },
-  {
-    name: "종로구원룸",
-    price: 4000,
-    report: 0,
+    name: "kkangpae",
   },
 ];
 
-export default rooms;
+var timelines = [
+  {
+    name: "31_tree",
+    img: require("./story.png"),
+  },
+  {
+    name: "kkangpae",
+    img: require("./story.png"),
+  },
+  {
+    name: "31_tree",
+    img: require("./story.png"),
+  },
+];
+
+export { users, timelines };
