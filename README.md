@@ -1,6 +1,6 @@
 # vvueing
 
-this is copy-app of instagram.
+This is copy-app of instagram.
 Used Vue3 Framework.
 
 ## initial screen
