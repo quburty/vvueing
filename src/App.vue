@@ -32,30 +32,47 @@
         </div>
         <span style="font-weight: 600">{{ timeline.name }}</span
         ><span style="padding-left: 10px">1일전</span>
-        <font-awesome-icon :icon="['fas', 'ellipsis']" class="timeline-icon" />
+        <IconComponent
+          sort="fas"
+          icon="ellipsis"
+          class="timeline-icon"
+        ></IconComponent>
       </div>
       <div class="images">
         <!-- <img alt="image" src="./assets/story.png" /> -->
         <img :src="timeline.img" />
       </div>
       <div class="buttons">
-        <div class="icon heart">
-          <font-awesome-icon :icon="['far', 'heart']" />
-        </div>
-        <div class="icon message">
-          <font-awesome-icon :icon="['far', 'message']" />
-        </div>
-        <div class="icon bookmark">
-          <font-awesome-icon :icon="['far', 'bookmark']" />
-        </div>
+        <IconComponent
+          sort="far"
+          icon="heart"
+          @click="timeline.likes++"
+        ></IconComponent>
+        <IconComponent sort="far" icon="message"></IconComponent>
+        <IconComponent sort="far" icon="bookmark"></IconComponent>
+      </div>
+      <div style="text-align: left">
+        <span>좋아요 {{ timeline.likes }}개 </span>
+      </div>
+      <div style="text-align: left">
+        <span>{{ timeline.name }} {{ timeline.describe }}</span>
       </div>
     </div>
+    <!--timeline-->
+  </div>
+  <div class="add">
+    <IconComponent
+      sort="fas"
+      icon="plus"
+      @click="addTimeline()"
+    ></IconComponent>
   </div>
 </template>
 
 <script>
 import { users, timelines } from "./assets/data.js";
 import ModalComponent from "./components/Modal.vue";
+import IconComponent from "./components/Icon.vue";
 
 export default {
   name: "App",
@@ -83,9 +100,14 @@ export default {
     getImageUrl(name) {
       return new URL(name, import.meta.url).href;
     },
+
+    addTimeline() {
+      alert("구현중입니다");
+    },
   },
   components: {
     ModalComponent: ModalComponent,
+    IconComponent: IconComponent,
   },
 };
 </script>
@@ -161,6 +183,11 @@ ul {
   border-radius: 25px;
   overflow: hidden;
   margin: 15px;
+  border: 3px solid transparent;
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(225deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 }
 
 img {
@@ -185,6 +212,7 @@ img {
 .timelines .top-bar {
   position: relative;
   display: flex;
+  align-items: center;
 }
 
 .timelines .thumbnail {
@@ -194,6 +222,7 @@ img {
   height: 50px;
   overflow: hidden;
   float: left;
+  border-radius: 25px;
 }
 
 .timeline-icon {
@@ -202,7 +231,8 @@ img {
   height: 24px;
 }
 
-.timlines .timeline-icon {
+.timelines .timeline-icon {
+  position: absolute;
   right: 10px;
 }
 
@@ -221,15 +251,21 @@ img {
   width: 100%;
   margin: 5px 0;
   display: flex;
+  align-items: center;
 }
 
-.buttons .icon {
-  height: 36px;
-  width: 36px;
-}
-
-.buttons .icon.bookmark {
-  position: absolute;
-  right: 10px;
+.add {
+  position: fixed;
+  bottom: 20px;
+  left: 50vw;
+  transform: translate(-50%, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 5px #000;
+  border-radius: 25px;
+  background: white;
 }
 </style>
