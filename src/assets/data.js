@@ -17,7 +17,7 @@ var timelines = [
   {
     name: "615_note",
     img: require("./story1.jpg"),
-    describe: "와 유명인 만남 ㄷㄷ",
+    describe: "응애",
     likes: 11,
     like: false,
     bookmark: false,
