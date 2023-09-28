@@ -19,47 +19,12 @@
   <div class="profiles">
     <div v-for="user in users" :key="user">
       <div class="thumbnail">
-        <img alt="thumbnail" src="./assets/thumbnail.jpg" />
+        <img alt="thumbnail" :src="user.thumbnail" />
       </div>
       <span>{{ user.name }}</span>
     </div>
   </div>
-  <div class="timelines">
-    <div v-for="timeline in timelines" :key="timeline" class="timeline">
-      <div class="top-bar">
-        <div class="thumbnail">
-          <img alt="thumbnail" src="./assets/thumbnail.jpg" />
-        </div>
-        <span style="font-weight: 600">{{ timeline.name }}</span
-        ><span style="padding-left: 10px">1일전</span>
-        <IconComponent
-          sort="fas"
-          icon="ellipsis"
-          class="timeline-icon"
-        ></IconComponent>
-      </div>
-      <div class="images">
-        <!-- <img alt="image" src="./assets/story.png" /> -->
-        <img :src="timeline.img" />
-      </div>
-      <div class="buttons">
-        <IconComponent
-          sort="far"
-          icon="heart"
-          @click="timeline.likes++"
-        ></IconComponent>
-        <IconComponent sort="far" icon="message"></IconComponent>
-        <IconComponent sort="far" icon="bookmark"></IconComponent>
-      </div>
-      <div style="text-align: left">
-        <span>좋아요 {{ timeline.likes }}개 </span>
-      </div>
-      <div style="text-align: left">
-        <span>{{ timeline.name }} {{ timeline.describe }}</span>
-      </div>
-    </div>
-    <!--timeline-->
-  </div>
+  <TimeLines></TimeLines>
   <div class="add">
     <IconComponent
       sort="fas"
@@ -73,6 +38,7 @@
 import { users, timelines } from "./assets/data.js";
 import ModalComponent from "./components/Modal.vue";
 import IconComponent from "./components/Icon.vue";
+import TimeLines from "./components/Timelines.vue";
 
 export default {
   name: "App",
@@ -102,12 +68,13 @@ export default {
     },
 
     addTimeline() {
-      alert("구현중입니다");
+      this.modal = true;
     },
   },
   components: {
     ModalComponent: ModalComponent,
     IconComponent: IconComponent,
+    TimeLines: TimeLines,
   },
 };
 </script>
@@ -173,11 +140,11 @@ ul {
   width: 600px;
   left: 35vw;
   top: 0;
-  border: 1px solid black;
   display: flex;
+  margin-bottom: 30px;
 }
 
-.profiles .thumbnail {
+.thumbnail {
   width: 50px;
   height: 50px;
   border-radius: 25px;
@@ -193,65 +160,6 @@ ul {
 img {
   width: 100%;
   height: 100%;
-}
-
-.timelines {
-  position: relative;
-  height: 3000px;
-  width: 500px;
-  left: 38vw;
-}
-
-.timelines .timeline {
-  position: relative;
-  width: 500px;
-  height: 850px;
-  border: 1px solid black;
-}
-
-.timelines .top-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.timelines .thumbnail {
-  position: relative;
-  left: 10px;
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-  float: left;
-  border-radius: 25px;
-}
-
-.timeline-icon {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-}
-
-.timelines .timeline-icon {
-  position: absolute;
-  right: 10px;
-}
-
-.timelines .images {
-  left: 0;
-  top: 100px;
-  height: 585px;
-  width: 470px;
-  overflow: hidden;
-}
-
-.buttons {
-  position: relative;
-  border: 1px solid black;
-  height: 40px;
-  width: 100%;
-  margin: 5px 0;
-  display: flex;
-  align-items: center;
 }
 
 .add {

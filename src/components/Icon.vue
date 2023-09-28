@@ -1,6 +1,6 @@
 <template>
   <div class="icon">
-    <font-awesome-icon :icon="[sort, icon]" />
+    <font-awesome-icon class="f-icon" :icon="[sort, icon]" />
   </div>
 </template>
 
@@ -23,6 +23,11 @@ export default {
   align-items: center;
   opacity: 1;
   cursor: pointer;
+}
+
+.icon .f-icon {
+  height: 70%;
+  width: 70%;
 }
 .icon:hover {
   opacity: 0.5;
