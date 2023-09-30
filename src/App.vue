@@ -26,11 +26,7 @@
   </div>
   <TimeLines></TimeLines>
   <div class="add">
-    <IconComponent
-      sort="fas"
-      icon="plus"
-      @click="addTimeline()"
-    ></IconComponent>
+    <IconComponent sort="fas" icon="plus" @click="readData()"></IconComponent>
   </div>
 </template>
 
@@ -39,6 +35,8 @@ import { users, timelines } from "./assets/data.js";
 import ModalComponent from "./components/Modal.vue";
 import IconComponent from "./components/Icon.vue";
 import TimeLines from "./components/Timelines.vue";
+import { db } from "./main.js";
+import "firebase/firestore";
 
 export default {
   name: "App",
@@ -69,6 +67,16 @@ export default {
 
     addTimeline() {
       this.modal = true;
+    },
+
+    async readData() {
+      db.firestore()
+        .collection("what")
+        .add({
+          test: [1, 0],
+        })
+        .then((r) => console.log(r))
+        .catch((e) => console.log(e));
     },
   },
   components: {
@@ -116,7 +124,7 @@ ul {
 
 .menu .logo {
   width: 103px;
-  height: 29px;
+  height: 50px;
   margin: 30px;
 }
 
