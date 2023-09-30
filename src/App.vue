@@ -35,7 +35,8 @@ import { users, timelines } from "./assets/data.js";
 import ModalComponent from "./components/Modal.vue";
 import IconComponent from "./components/Icon.vue";
 import TimeLines from "./components/Timelines.vue";
-import { db } from "./main.js";
+
+import firebase from "firebase/app";
 import "firebase/firestore";
 
 export default {
@@ -69,14 +70,17 @@ export default {
       this.modal = true;
     },
 
-    async readData() {
-      db.firestore()
-        .collection("what")
-        .add({
-          test: [1, 0],
-        })
-        .then((r) => console.log(r))
-        .catch((e) => console.log(e));
+    readData() {
+      //todo: 나중에, firebase 관련 워닝 해결
+      console.log("hello");
+      const db = firebase.firestore();
+      db.collection("what")
+        .get()
+        .then((e) => {
+          e.forEach((doc) => {
+            console.log(doc.data());
+          });
+        });
     },
   },
   components: {

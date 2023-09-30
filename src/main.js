@@ -14,7 +14,6 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
-import "https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js";
 
 var firebaseConfig = {
   apiKey: "AIzaSyAUrUA3yO2LPcEvLMAwQ8FEpej7M4ecObw",
@@ -26,7 +25,6 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-export const db = firebase.firestore();
 
 /* add icons to the library */
 library.add(fas, far, fab);
