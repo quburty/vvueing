@@ -85,11 +85,11 @@ export default {
               return;
             }
 
-            if (doc.data().users == undefined) {
+            if (doc.data().user == undefined) {
               return;
             }
 
-            doc.data().users.forEach((e) => {
+            doc.data().user.forEach((e) => {
               this.users.push({
                 name: e.name,
                 thumbnail: require("./assets/thumbnail.jpg"),
@@ -117,7 +117,7 @@ export default {
               this.timelines.push({
                 name: e.name,
                 img: require("./assets/story1.jpg"),
-                describe: e.desc,
+                describe: e.describe,
                 likes: e.likes,
                 like: false,
                 bookmark: false,
@@ -130,12 +130,16 @@ export default {
     pushNewFeed(msg) {
       const db = firebase.firestore();
       const feedRef = db.collection("feeds").doc("XvmAeplyodgMqjWZVpbF");
-      feedRef.set(
-        {
-          capital: msg,
-        },
-        { merge: true }
-      );
+
+      feedRef.update({
+        feeds: firebase.firestore.FieldValue.arrayUnion({
+          name: "615_tree",
+          describe: msg,
+          likes: 0,
+        }),
+      });
+
+      this.modal = false;
     },
 
     readData() {

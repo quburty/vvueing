@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
+Vue.use(VueRouter);
+
 /* import the fontawesome core */
 import { library } from "@fortawesome/fontawesome-svg-core";
 
