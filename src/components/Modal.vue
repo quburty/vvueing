@@ -4,6 +4,8 @@
       <h4>새 게시물 만들기</h4>
       <div class="content">
         <font-awesome-icon class="f-icon" :icon="['far', 'image']" />
+        <input ref="input" />
+        <button @click="submit()">업로드</button>
         <p>업로드 기능은 현재 구현 중에 있습니다.</p>
       </div>
       <div @click="$emit('close')" class="f-button">
@@ -24,6 +26,11 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    submit() {
+      this.$parent.pushNewFeed(this.$refs.input.value);
+    },
   },
 };
 </script>

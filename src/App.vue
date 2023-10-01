@@ -1,5 +1,10 @@
 <template>
-  <ModalComponent :msg="modalMessage" @close="modalOff" v-if="modal" />
+  <ModalComponent
+    :msg="modalMessage"
+    @close="modalOff"
+    @submit="pushNewFeed"
+    v-if="modal"
+  />
 
   <div>
     <ul class="menu">
@@ -17,7 +22,7 @@
     </ul>
   </div>
   <div class="profiles">
-    <div v-for="user in users" :key="user">
+    <div v-for="user in users" :key="user.id">
       <div class="thumbnail">
         <img alt="thumbnail" :src="user.thumbnail" />
       </div>
@@ -26,7 +31,11 @@
   </div>
   <TimeLines></TimeLines>
   <div class="add">
-    <IconComponent sort="fas" icon="plus" @click="readData()"></IconComponent>
+    <IconComponent
+      sort="fas"
+      icon="plus"
+      @click="addTimeline()"
+    ></IconComponent>
   </div>
 </template>
 
@@ -43,10 +52,6 @@ export default {
   name: "App",
   data() {
     return {
-      price1: 50000,
-      price2: 30000,
-      products: ["역삼동원룸", "천호동원룸", "마포동원룸"],
-      reports: 0,
       users: users,
       timelines: timelines,
       modal: false,
@@ -70,23 +75,83 @@ export default {
       this.modal = true;
     },
 
-    readData() {
-      //todo: 나중에, firebase 관련 워닝 해결
-      console.log("hello");
+    initUserData() {
       const db = firebase.firestore();
-      db.collection("what")
+      db.collection("feeds")
         .get()
-        .then((e) => {
-          e.forEach((doc) => {
-            console.log(doc.data());
+        .then((docs) => {
+          docs.forEach((doc) => {
+            if (doc.id != "XvmAeplyodgMqjWZVpbF") {
+              return;
+            }
+
+            if (doc.data().users == undefined) {
+              return;
+            }
+
+            doc.data().users.forEach((e) => {
+              this.users.push({
+                name: e.name,
+                thumbnail: require("./assets/thumbnail.jpg"),
+              });
+            });
           });
         });
     },
-  },
+
+    initFeedData() {
+      const db = firebase.firestore();
+      db.collection("feeds")
+        .get()
+        .then((docs) => {
+          docs.forEach((doc) => {
+            if (doc.id != "XvmAeplyodgMqjWZVpbF") {
+              return;
+            }
+
+            if (doc.data().feeds == undefined) {
+              return;
+            }
+
+            doc.data().feeds.forEach((e) => {
+              this.timelines.push({
+                name: e.name,
+                img: require("./assets/story1.jpg"),
+                describe: e.desc,
+                likes: e.likes,
+                like: false,
+                bookmark: false,
+              });
+            });
+          });
+        });
+    },
+
+    pushNewFeed(msg) {
+      const db = firebase.firestore();
+      const feedRef = db.collection("feeds").doc("XvmAeplyodgMqjWZVpbF");
+      feedRef.set(
+        {
+          capital: msg,
+        },
+        { merge: true }
+      );
+    },
+
+    readData() {
+      console.log(this.users);
+    }, //readData
+  }, //methods
+
   components: {
     ModalComponent: ModalComponent,
     IconComponent: IconComponent,
     TimeLines: TimeLines,
+  },
+
+  mounted() {
+    this.initFeedData();
+    this.initUserData();
   },
 };
 </script>
