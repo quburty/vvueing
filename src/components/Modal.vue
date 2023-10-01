@@ -3,7 +3,17 @@
     <div class="white-bg">
       <h4>새 게시물 만들기</h4>
       <div class="content">
-        <font-awesome-icon class="f-icon" :icon="['far', 'image']" />
+        <font-awesome-icon
+          class="f-icon"
+          :icon="['far', 'image']"
+          v-if="isImage == false"
+        />
+        <div class="preview" v-if="isImage == true">
+          <img alt="preview" :src="imgPreview" />
+        </div>
+        <input ref="images" @input="previewFile" type="file" id="fileinput" />
+        <!-- <button @click="imageUpload()">이미지업로드</button> -->
+        <br />
         <input ref="input" />
         <button @click="submit()">업로드</button>
         <p>업로드 기능은 현재 구현 중에 있습니다.</p>
@@ -25,12 +35,47 @@ export default {
     msg: String,
   },
   data() {
-    return {};
+    return {
+      isImage: false,
+      imgPreview: null,
+    };
   },
   methods: {
     submit() {
-      this.$parent.pushNewFeed(this.$refs.input.value);
+      this.$parent.pushNewFeed(
+        this.$refs.input.value,
+        this.$refs.images.files[0]
+      );
     },
+
+    previewFile(event) {
+      var file = event.target.files[0];
+
+      const fileData = (data) => {
+        this.imgPreview = data;
+        this.isImage = true;
+      };
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.addEventListener(
+        "load",
+        function () {
+          fileData(reader.result);
+        },
+        false
+      );
+    },
+
+    // imageUpload() {
+    //
+
+    //   if (this.$refs.images.files.length == 0) {
+    //     return;
+    //   }
+
+    //   this.$parent.imageUpload(this.$refs.images.files[0]);
+    // },
   },
 };
 </script>
@@ -96,5 +141,16 @@ div {
 
 .f-button:hover {
   opacity: 0.5;
+}
+
+.preview {
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.preview img {
+  object-fit: cover;
 }
 </style>

@@ -47,6 +47,7 @@ import TimeLines from "./components/Timelines.vue";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/storage";
 
 export default {
   name: "App",
@@ -101,6 +102,8 @@ export default {
 
     initFeedData() {
       const db = firebase.firestore();
+      //const storage = firebase.storage();
+
       db.collection("feeds")
         .get()
         .then((docs) => {
@@ -116,7 +119,7 @@ export default {
             doc.data().feeds.forEach((e) => {
               this.timelines.push({
                 name: e.name,
-                img: require("./assets/story1.jpg"),
+                img: e.img,
                 describe: e.describe,
                 likes: e.likes,
                 like: false,
@@ -127,14 +130,33 @@ export default {
         });
     },
 
-    pushNewFeed(msg) {
+    pushNewFeed(msg, file) {
+      var upload = undefined;
+      var storagePath = "";
+
+      if (file != undefined) {
+        const storage = firebase.storage();
+
+        var storageRef = storage.ref();
+        var path = storageRef.child("image/" + file.name);
+        upload = path.put(file);
+
+        console.log(upload);
+        storagePath =
+          "https://firebasestorage.googleapis.com/v0/b/vueinstagram-6dc6b.appspot.com/o/" +
+          "image%2F" +
+          file.name +
+          "?alt=media";
+      }
+
       const db = firebase.firestore();
       const feedRef = db.collection("feeds").doc("XvmAeplyodgMqjWZVpbF");
 
       feedRef.update({
         feeds: firebase.firestore.FieldValue.arrayUnion({
-          name: "615_tree",
+          name: "615_note",
           describe: msg,
+          img: storagePath,
           likes: 0,
         }),
       });
