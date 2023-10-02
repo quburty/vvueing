@@ -102,7 +102,6 @@ export default {
 
     initFeedData() {
       const db = firebase.firestore();
-      //const storage = firebase.storage();
 
       db.collection("feeds")
         .get()
@@ -160,13 +159,7 @@ export default {
           likes: 0,
         }),
       });
-
-      this.modal = false;
     },
-
-    readData() {
-      console.log(this.users);
-    }, //readData
   }, //methods
 
   components: {
@@ -175,9 +168,9 @@ export default {
     TimeLines: TimeLines,
   },
 
-  mounted() {
-    this.initFeedData();
+  created() {
     this.initUserData();
+    this.initFeedData();
   },
 };
 </script>
@@ -215,6 +208,8 @@ ul {
   height: 100vh;
   width: 200px;
   border-right: 1px solid gray;
+  z-index: 3;
+  background: white;
 }
 
 .menu .logo {
@@ -265,6 +260,13 @@ img {
   height: 100%;
 }
 
+.timelines {
+  position: relative;
+  min-height: 600px;
+  width: 500px;
+  left: 38vw;
+}
+
 .add {
   position: fixed;
   bottom: 20px;
@@ -278,5 +280,40 @@ img {
   box-shadow: 0px 0px 5px #000;
   border-radius: 25px;
   background: white;
+}
+
+@media (max-width: 767px) {
+  .app {
+    display: flex;
+    justify-content: center;
+  }
+
+  .profiles {
+    display: none;
+  }
+
+  .menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 80px;
+    width: 100vw;
+    border: none;
+    border-bottom: 1px solid gray;
+  }
+
+  .menu .logo {
+    margin: auto;
+  }
+
+  .menu li {
+    display: none;
+  }
+
+  .timelines {
+    position: relative;
+    top: 50px;
+    left: 15vw;
+  }
 }
 </style>

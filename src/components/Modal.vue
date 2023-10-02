@@ -1,7 +1,15 @@
 <template>
   <div class="black-bg">
-    <div class="white-bg">
-      <h4>새 게시물 만들기</h4>
+    <div class="white-bg modal">
+      <div class="title">
+        <div @click="$emit('close')" class="f-button">
+          <font-awesome-icon
+            :icon="['fas', 'xmark']"
+            style="width: 30px; height: 30px"
+          />
+        </div>
+        <h4>새 게시물 만들기</h4>
+      </div>
       <div class="content">
         <font-awesome-icon
           class="f-icon"
@@ -11,18 +19,22 @@
         <div class="preview" v-if="isImage == true">
           <img alt="preview" :src="imgPreview" />
         </div>
-        <input ref="images" @input="previewFile" type="file" id="fileinput" />
-        <!-- <button @click="imageUpload()">이미지업로드</button> -->
-        <br />
-        <input ref="input" />
-        <button @click="submit()">업로드</button>
-        <p>업로드 기능은 현재 구현 중에 있습니다.</p>
-      </div>
-      <div @click="$emit('close')" class="f-button">
-        <font-awesome-icon
-          :icon="['fas', 'xmark']"
-          style="width: 50px; height: 50px"
+        <input
+          ref="images"
+          class="imageInput"
+          @input="previewFile"
+          type="file"
+          id="fileinput"
         />
+        <br />
+        <textarea
+          ref="input"
+          class="textInput"
+          maxlength="50"
+          placeholder="Write your message."
+        />
+        <br />
+        <button @click="submit()">업로드</button>
       </div>
     </div>
   </div>
@@ -46,6 +58,8 @@ export default {
         this.$refs.input.value,
         this.$refs.images.files[0]
       );
+
+      this.$parent.modalOff();
     },
 
     previewFile(event) {
@@ -66,16 +80,6 @@ export default {
         false
       );
     },
-
-    // imageUpload() {
-    //
-
-    //   if (this.$refs.images.files.length == 0) {
-    //     return;
-    //   }
-
-    //   this.$parent.imageUpload(this.$refs.images.files[0]);
-    // },
   },
 };
 </script>
@@ -112,11 +116,33 @@ div {
 .white-bg h4 {
   margin: 9px;
 }
+
+.title {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.title .f-button {
+  float: left;
+  left: 5px;
+  top: 5px;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.f-button:hover {
+  opacity: 0.5;
+}
 .content {
   position: relative;
   width: 100%;
   height: 80%;
-  border: 1px solid black;
+  border: 1px solid transparent;
+  border-top: 1px solid black;
   align-items: center;
   justify-content: center;
 }
@@ -132,25 +158,38 @@ div {
   flex-direction: column;
 }
 
-.f-button {
-  margin: 20px auto;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-}
-
-.f-button:hover {
-  opacity: 0.5;
-}
-
 .preview {
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   margin: auto;
   overflow: hidden;
 }
 
 .preview img {
   object-fit: cover;
+}
+
+button {
+  border: transparent;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.imageInput {
+  height: 50px;
+}
+
+.textInput {
+  width: 85%;
+  height: 25%;
+  border-radius: 5px;
+  font-size: 15px;
+  background: rgb(247, 247, 247);
+  border: transparent;
+  resize: none;
+  font-family: inherit;
 }
 </style>

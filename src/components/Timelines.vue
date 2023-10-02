@@ -81,13 +81,6 @@ export default {
 </script>
 
 <style scoped>
-.timelines {
-  position: relative;
-  height: 3000px;
-  width: 500px;
-  left: 38vw;
-}
-
 .timelines .timeline {
   position: relative;
   width: 500px;

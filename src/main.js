@@ -14,6 +14,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
+import router from './router'
 
 var firebaseConfig = {
   apiKey: "AIzaSyAUrUA3yO2LPcEvLMAwQ8FEpej7M4ecObw",
@@ -29,4 +30,4 @@ firebase.initializeApp(firebaseConfig);
 /* add icons to the library */
 library.add(fas, far, fab);
 
-createApp(App).component("font-awesome-icon", FontAwesomeIcon).mount("#app");
+createApp(App).use(router).component("font-awesome-icon", FontAwesomeIcon).mount("#app");
