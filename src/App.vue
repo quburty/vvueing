@@ -7,6 +7,9 @@
   />
 
   <div>
+    <router-link to="/">Home</router-link>
+    <router-link to="/about">About</router-link>
+    <router-view class="router-div" />
     <ul class="menu">
       <img class="logo" alt="instargam logo" src="./assets/logo.png" />
       <li><font-awesome-icon icon="fa-solid fa-house" /><span>홈</span></li>
@@ -159,6 +162,8 @@ export default {
           likes: 0,
         }),
       });
+
+      this.$router.go();
     },
   }, //methods
 
@@ -176,6 +181,15 @@ export default {
 </script>
 
 <style>
+.router-div {
+  position: absolute;
+  z-index: 6;
+  left: 0;
+  top: 0;
+  width: 30%;
+  height: 30%;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
