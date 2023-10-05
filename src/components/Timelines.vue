@@ -81,6 +81,10 @@ export default {
 </script>
 
 <style scoped>
+img {
+  width: 100%;
+  height: 100%;
+}
 .timelines .timeline {
   position: relative;
   width: 500px;
@@ -103,6 +107,19 @@ export default {
   overflow: hidden;
   float: left;
   border-radius: 25px;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  overflow: hidden;
+  margin: 15px;
+  border: 3px solid transparent;
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(225deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 }
 
 .timeline-icon {
