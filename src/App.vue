@@ -125,6 +125,8 @@ export default {
                 bookmark: false,
               });
             });
+
+            this.timelines.reverse();
           });
         });
     },
@@ -151,14 +153,18 @@ export default {
       const db = firebase.firestore();
       const feedRef = db.collection("feeds").doc("XvmAeplyodgMqjWZVpbF");
 
-      feedRef.update({
-        feeds: firebase.firestore.FieldValue.arrayUnion({
-          name: "615_note",
-          describe: msg,
-          img: storagePath,
-          likes: 0,
-        }),
-      });
+      feedRef
+        .update({
+          feeds: firebase.firestore.FieldValue.arrayUnion({
+            name: "615_note",
+            describe: msg,
+            img: storagePath,
+            likes: 0,
+          }),
+        })
+        .then(() => {
+          this.$router.go();
+        });
     },
   }, //methods
 
