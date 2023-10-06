@@ -1,5 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import vuetify from "./plugins/vuetify";
+import { loadFonts } from "./plugins/webfontloader";
 
 /* import the fontawesome core */
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -14,7 +16,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
-import router from "./router";
+import router from "./router/index.js";
 
 var firebaseConfig = {
   apiKey: "AIzaSyAUrUA3yO2LPcEvLMAwQ8FEpej7M4ecObw",
@@ -30,7 +32,10 @@ firebase.initializeApp(firebaseConfig);
 /* add icons to the library */
 library.add(fas, far, fab);
 
+loadFonts();
+
 createApp(App)
   .use(router)
+  .use(vuetify)
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");
