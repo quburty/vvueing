@@ -1,5 +1,4 @@
 <template>
-  <span>{{ timelines.length }}</span>
   <div class="timelines">
     <div v-for="timeline in timelines" :key="timeline" class="timeline">
       <div class="top-bar">
