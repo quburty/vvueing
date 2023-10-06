@@ -6,7 +6,7 @@
     v-if="modal"
   />
   <div class="profiles">
-    <div v-for="user in users" :key="user.id">
+    <div v-for="user in users" :key="user">
       <div class="thumbnail">
         <img alt="thumbnail" :src="user.thumbnail" />
       </div>
@@ -28,7 +28,6 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
 
-import { users, timelines } from "../assets/data.js";
 import ModalComponent from "../components/Modal.vue";
 import IconComponent from "../components/Icon.vue";
 import TimeLines from "../components/Timelines.vue";
@@ -38,8 +37,8 @@ export default defineComponent({
   name: "HomeView",
   data() {
     return {
-      users: users,
-      timelines: timelines,
+      users: [],
+      timelines: [],
       modal: false,
       modalMessage: null,
     };
@@ -69,6 +68,8 @@ export default defineComponent({
     },
 
     initUserData() {
+      this.users = [];
+
       const db = firebase.firestore();
       db.collection("feeds")
         .get()
@@ -93,6 +94,8 @@ export default defineComponent({
     },
 
     initFeedData() {
+      this.timelines = [];
+
       const db = firebase.firestore();
 
       db.collection("feeds")
@@ -160,9 +163,7 @@ export default defineComponent({
     },
   }, //methods
 
-  created() {
-    console.log("GOTOGOTO");
-
+  mounted() {
     this.initUserData();
     this.initFeedData();
   },
