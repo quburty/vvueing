@@ -71,4 +71,9 @@ div {
 .v-list-item__content {
   color: black;
 }
+
+/* .thumbnail {
+  width: 60px;
+  height: 60px;
+} */
 </style>

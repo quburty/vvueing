@@ -1,11 +1,12 @@
 <template>
   <div class="timelines">
     <div v-for="timeline in feeds" :key="timeline" class="timeline">
-      <v-row class="top-bar" align="center" min-height="200">
-        <v-col cols="12" md="1" class="thumbnail">
+      <v-row class="top-bar w-100" align="center" height="44px">
+        <v-col md="1" class="thumbnail">
           <v-img
             alt="thumbnail"
             :src="findUser(timeline.name)"
+            :width="50"
             :aspect-ratio="1 / 1"
             style="
               border-radius: 50%;
@@ -18,7 +19,9 @@
             "
           />
         </v-col>
-        <span style="font-weight: 600; margin: 0 10px">{{ timeline.name }}</span
+        <span style="font-weight: 600; margin: 0 10px" class="text-title">{{
+          timeline.name
+        }}</span
         ><span style="padding-left: 10px">1일전</span>
         <IconComponent
           sort="fas"
@@ -27,10 +30,15 @@
           justify="end"
         ></IconComponent>
       </v-row>
-      <div class="images">
-        <!-- <img alt="image" src="./assets/story.png" /> -->
-        <img :src="timeline.img" />
-      </div>
+      <v-img
+        :src="timeline.img"
+        :width="468"
+        :height="585"
+        :cover="true"
+      ></v-img>
+      <!-- <div class="images" style="width: 468px; height: 585px">
+        <img style="object-fit: cover" :src="timeline.img" />
+      </div> -->
       <v-row class="buttons">
         <v-col cols="12" md="1">
           <IconComponent
@@ -64,7 +72,6 @@
           <b>{{ timeline.name }} </b> {{ timeline.describe }}
         </p>
       </v-sheet>
-      <hr />
     </div>
     <!--timeline-->
   </div>
@@ -108,11 +115,16 @@ img {
   width: 100%;
   height: 100%;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /*
 .timelines .timeline {
   position: relative;
-  width: 500px;
-  height: 800px;
   border-bottom: 1px solid #cacaca;
   margin: 30px 0;
 }
