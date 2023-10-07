@@ -5,15 +5,38 @@
     @submit="pushNewFeed"
     v-if="modal"
   />
-  <div class="profiles">
-    <div v-for="user in users" :key="user">
-      <div class="thumbnail">
-        <img alt="thumbnail" :src="user.thumbnail" />
-      </div>
-      <span>{{ user.name }}</span>
-    </div>
-  </div>
-  <TimeLines></TimeLines>
+  <v-container>
+    <v-row justify="center">
+      <v-col class="profiles" cols="12" md="6" style="border: 1px solid black">
+        <v-row>
+          <v-col v-for="user in users" :key="user" md="1">
+            <v-sheet class="pa-md-4">
+              <v-img
+                alt="thumbnail"
+                :src="user.thumbnail"
+                :aspect-ratio="1 / 1"
+                style="
+                  border-radius: 50%;
+                  border: linear-gradient(
+                    225deg,
+                    #833ab4 0%,
+                    #fd1d1d 50%,
+                    #fcb045 100%
+                  );
+                "
+              />
+            </v-sheet>
+            <span>{{ user.name }}</span>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" md="4">
+        <TimeLines :feeds="feeds" :users="users"></TimeLines>
+      </v-col>
+    </v-row>
+  </v-container>
   <div class="add">
     <IconComponent
       sort="fas"
@@ -38,7 +61,7 @@ export default defineComponent({
   data() {
     return {
       users: [],
-      timelines: [],
+      feeds: [],
       modal: false,
       modalMessage: null,
     };
@@ -94,7 +117,7 @@ export default defineComponent({
     },
 
     initFeedData() {
-      this.timelines = [];
+      this.feeds = [];
 
       const db = firebase.firestore();
 
@@ -111,7 +134,7 @@ export default defineComponent({
             }
 
             doc.data().feeds.forEach((e) => {
-              this.timelines.push({
+              this.feeds.push({
                 name: e.name,
                 img: e.img,
                 describe: e.describe,
@@ -121,7 +144,7 @@ export default defineComponent({
               });
             });
 
-            this.timelines.reverse();
+            this.feeds.reverse();
           });
         });
     },
@@ -188,10 +211,8 @@ export default defineComponent({
 body {
   margin: 0;
 }
-div {
-  box-sizing: border-box;
-}
-.profiles {
+
+/* .profiles {
   position: relative;
   height: 100px;
   width: 600px;
@@ -222,9 +243,7 @@ img {
 .timelines {
   position: relative;
   min-height: 600px;
-  width: 500px;
-  margin: 0 auto;
-}
+}*/
 
 .add {
   position: fixed;
@@ -248,16 +267,9 @@ img {
   }
 
   .profiles {
-    display: none;
   }
 
   .menu {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 80px;
-    width: 100vw;
-    border: none;
     border-bottom: 1px solid gray;
   }
 
@@ -271,8 +283,8 @@ img {
 
   .timelines {
     position: relative;
-    top: 50px;
-    left: 15vw;
+    left: 50vw;
+    transform: translate(-50vw, 0);
   }
 }
 </style>

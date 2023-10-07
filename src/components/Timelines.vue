@@ -1,69 +1,92 @@
 <template>
   <div class="timelines">
-    <div v-for="timeline in timelines" :key="timeline" class="timeline">
-      <div class="top-bar">
-        <div class="thumbnail">
-          <img alt="thumbnail" :src="findUser(timeline.name)" />
-        </div>
+    <div v-for="timeline in feeds" :key="timeline" class="timeline">
+      <v-row class="top-bar" align="center" min-height="200">
+        <v-col cols="12" md="1" class="thumbnail">
+          <v-img
+            alt="thumbnail"
+            :src="findUser(timeline.name)"
+            :aspect-ratio="1 / 1"
+            style="
+              border-radius: 50%;
+              border: linear-gradient(
+                225deg,
+                #833ab4 0%,
+                #fd1d1d 50%,
+                #fcb045 100%
+              );
+            "
+          />
+        </v-col>
         <span style="font-weight: 600; margin: 0 10px">{{ timeline.name }}</span
         ><span style="padding-left: 10px">1일전</span>
         <IconComponent
           sort="fas"
           icon="ellipsis"
           class="timeline-icon"
+          justify="end"
         ></IconComponent>
-      </div>
+      </v-row>
       <div class="images">
         <!-- <img alt="image" src="./assets/story.png" /> -->
         <img :src="timeline.img" />
       </div>
-      <div class="buttons">
-        <IconComponent
-          :sort="timeline.like ? 'fas' : 'far'"
-          icon="heart"
-          @click="
-            timeline.likes++;
-            timeline.like = true;
-          "
-        ></IconComponent>
-        <IconComponent sort="far" icon="message"></IconComponent>
-        <IconComponent
-          :sort="timeline.bookmark ? 'fas' : 'far'"
-          icon="bookmark"
-          class="right"
-          @click="timeline.bookmark = true"
-        ></IconComponent>
-      </div>
-      <div style="text-align: left">
+      <v-row class="buttons">
+        <v-col cols="12" md="1">
+          <IconComponent
+            :sort="timeline.like ? 'fas' : 'far'"
+            icon="heart"
+            @click="
+              timeline.likes++;
+              timeline.like = true;
+            "
+          ></IconComponent>
+        </v-col>
+        <v-col md="1">
+          <IconComponent sort="far" icon="message"></IconComponent>
+        </v-col>
+        <v-col md="1">
+          <IconComponent
+            :sort="timeline.bookmark ? 'fas' : 'far'"
+            icon="bookmark"
+            class="right"
+            @click="timeline.bookmark = true"
+          ></IconComponent>
+        </v-col>
+      </v-row>
+      <v-sheet height="50" style="text-align: left">
         <p>
           <b>좋아요 {{ timeline.likes }}개</b>
         </p>
-      </div>
-      <div style="text-align: left">
+      </v-sheet>
+      <v-sheet height="100" style="text-align: left">
         <p>
           <b>{{ timeline.name }} </b> {{ timeline.describe }}
         </p>
-      </div>
+      </v-sheet>
+      <hr />
     </div>
     <!--timeline-->
   </div>
 </template>
 
 <script>
-import { users, timelines } from "../assets/data.js";
 import IconComponent from "./Icon.vue";
 
 export default {
   name: "TimeLines",
-  props: {},
+  props: {
+    users: Array,
+    feeds: Array,
+  },
   data() {
     return {
-      timelines: timelines,
+      //timelines: timelines,
     };
   },
   methods: {
     findUser(name) {
-      var user = users.find((e) => {
+      var user = this.users.find((e) => {
         return e.name == name;
       });
 
@@ -85,6 +108,7 @@ img {
   width: 100%;
   height: 100%;
 }
+/*
 .timelines .timeline {
   position: relative;
   width: 500px;
@@ -158,4 +182,6 @@ img {
   position: absolute;
   right: 5px;
 }
+
+*/
 </style>

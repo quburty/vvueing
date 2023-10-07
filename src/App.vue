@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-main>
-      <v-navigation-drawer>
+    <v-main row wrap>
+      <v-navigation-drawer class="menu" style="border: 1px solid black">
         <v-list-item title="Vuestagram"></v-list-item>
         <v-divider></v-divider>
         <router-link to="/home">
@@ -20,23 +20,6 @@
           </v-list-item>
         </router-link>
       </v-navigation-drawer>
-      <!-- <div>
-        <ul class="menu">
-          <img class="logo" alt="instargam logo" src="./assets/logo.png" />
-          <li><font-awesome-icon icon="fa-solid fa-house" /><span>홈</span></li>
-          <li>
-            <font-awesome-icon :icon="['fas', 'magnifying-glass']" /><span
-              >검색</span
-            >
-          </li>
-          <li>
-            <font-awesome-icon :icon="['far', 'message']" /><span>메세지</span>
-          </li>
-          <li>
-            <font-awesome-icon :icon="['fas', 'user']" /><span>프로필</span>
-          </li>
-        </ul>
-      </div> -->
       <router-view> </router-view>
     </v-main>
   </v-app>
@@ -87,25 +70,5 @@ div {
 
 .v-list-item__content {
   color: black;
-}
-
-.menu .logo {
-  width: 103px;
-  height: 50px;
-  margin: 30px;
-}
-
-.menu li {
-  width: 220px;
-  height: 56px;
-  text-align: left;
-  padding: 12px;
-  font-size: 24px;
-}
-
-.menu li span {
-  padding-left: 16px;
-  font-size: 16px;
-  font-weight: 500;
 }
 </style>
