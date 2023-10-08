@@ -282,5 +282,16 @@ img {
     left: 50vw;
     transform: translate(-50vw, 0);
   }
+
+  .profiles {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: white;
+    z-index: 6;
+    width: 100vw;
+    height: 200px;
+    overflow: hidden;
+  }
 }
 </style>
