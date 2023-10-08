@@ -1,0 +1,55 @@
+[debug] [2023-10-08T08:35:47.773Z] ----------------------------------------------------------------------
+[debug] [2023-10-08T08:35:47.774Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\tedst\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-10-08T08:35:47.775Z] CLI Version:   12.6.2
+[debug] [2023-10-08T08:35:47.775Z] Platform:      win32
+[debug] [2023-10-08T08:35:47.775Z] Node Version:  v18.16.1
+[debug] [2023-10-08T08:35:47.776Z] Time:          Sun Oct 08 2023 17:35:47 GMT+0900 (대한민국 표준시)
+[debug] [2023-10-08T08:35:47.776Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-10-08T08:35:47.854Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-10-08T08:35:47.855Z] > authorizing via signed-in user (tedstar7@gmail.com)
+[debug] [2023-10-08T08:35:47.855Z] [iam] checking project vueinstagram-6dc6b for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2023-10-08T08:35:47.857Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/vueinstagram-6dc6b:testIamPermissions [none]
+[debug] [2023-10-08T08:35:47.858Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/vueinstagram-6dc6b:testIamPermissions x-goog-quota-user=projects/vueinstagram-6dc6b
+[debug] [2023-10-08T08:35:47.858Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vueinstagram-6dc6b:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2023-10-08T08:35:48.769Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/vueinstagram-6dc6b:testIamPermissions 200
+[debug] [2023-10-08T08:35:48.769Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vueinstagram-6dc6b:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2023-10-08T08:35:48.771Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vueinstagram-6dc6b [none]
+[debug] [2023-10-08T08:35:49.252Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vueinstagram-6dc6b 200
+[debug] [2023-10-08T08:35:49.252Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vueinstagram-6dc6b {"projectId":"vueinstagram-6dc6b","projectNumber":"368243488504","displayName":"VueInstagram","name":"projects/vueinstagram-6dc6b","resources":{"hostingSite":"vueinstagram-6dc6b","storageBucket":"vueinstagram-6dc6b.appspot.com","locationId":"asia-east2"},"state":"ACTIVE","etag":"1_facadbdd-fe0e-476c-8dd6-e3519ae267fa"}
+[info] 
+[info] === Deploying to 'vueinstagram-6dc6b'...
+[info] 
+[info] i  deploying storage, firestore, hosting 
+[debug] [2023-10-08T08:35:49.261Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vueinstagram-6dc6b [none]
+[debug] [2023-10-08T08:35:49.684Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vueinstagram-6dc6b 200
+[debug] [2023-10-08T08:35:49.685Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vueinstagram-6dc6b {"projectId":"vueinstagram-6dc6b","projectNumber":"368243488504","displayName":"VueInstagram","name":"projects/vueinstagram-6dc6b","resources":{"hostingSite":"vueinstagram-6dc6b","storageBucket":"vueinstagram-6dc6b.appspot.com","locationId":"asia-east2"},"state":"ACTIVE","etag":"1_facadbdd-fe0e-476c-8dd6-e3519ae267fa"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2023-10-08T08:35:49.701Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b:test [none]
+[debug] [2023-10-08T08:35:49.702Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b:test [omitted]
+[debug] [2023-10-08T08:35:50.999Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b:test 200
+[debug] [2023-10-08T08:35:50.999Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b:test {}
+[info] +  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2023-10-08T08:35:51.005Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b:test [none]
+[debug] [2023-10-08T08:35:51.005Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b:test [omitted]
+[debug] [2023-10-08T08:35:52.163Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b:test 200
+[debug] [2023-10-08T08:35:52.164Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2023-10-08T08:35:52.178Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/vueinstagram-6dc6b/versions [none]
+[debug] [2023-10-08T08:35:52.178Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/vueinstagram-6dc6b/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-10-08T08:35:55.414Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/vueinstagram-6dc6b/versions 200
+[debug] [2023-10-08T08:35:55.414Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/vueinstagram-6dc6b/versions {"name":"projects/368243488504/sites/vueinstagram-6dc6b/versions/75826f9b2a735f89","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-10-08T08:35:55.416Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b/releases pageSize=10&pageToken=
+[debug] [2023-10-08T08:35:56.596Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b/releases 200
+[debug] [2023-10-08T08:35:56.596Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b/releases {"releases":[{"name":"projects/vueinstagram-6dc6b/releases/cloud.firestore","rulesetName":"projects/vueinstagram-6dc6b/rulesets/ae4fcec7-d84d-4ebb-af7c-d36e9eba9b51","createTime":"2023-09-30T01:51:53.483138Z","updateTime":"2023-09-30T02:13:45.831482Z"},{"name":"projects/vueinstagram-6dc6b/releases/firebase.storage/vueinstagram-6dc6b.appspot.com","rulesetName":"projects/vueinstagram-6dc6b/rulesets/5f9b1f78-c32a-4fb7-9e6b-b17cfb076fba","createTime":"2023-09-30T01:17:35.250056Z","updateTime":"2023-10-01T10:49:48.052710Z"}]}
+[debug] [2023-10-08T08:35:56.606Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b/rulesets/5f9b1f78-c32a-4fb7-9e6b-b17cfb076fba [none]
+[debug] [2023-10-08T08:35:57.892Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b/rulesets/5f9b1f78-c32a-4fb7-9e6b-b17cfb076fba 200
+[debug] [2023-10-08T08:35:57.892Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/vueinstagram-6dc6b/rulesets/5f9b1f78-c32a-4fb7-9e6b-b17cfb076fba [omitted]
+[debug] [2023-10-08T08:35:57.896Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vueinstagram-6dc6b [none]
+[debug] [2023-10-08T08:35:58.393Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vueinstagram-6dc6b 200
+[debug] [2023-10-08T08:35:58.393Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vueinstagram-6dc6b {"projectId":"vueinstagram-6dc6b","projectNumber":"368243488504","displayName":"VueInstagram","name":"projects/vueinstagram-6dc6b","resources":{"hostingSite":"vueinstagram-6dc6b","storageBucket":"vueinstagram-6dc6b.appspot.com","locationId":"asia-east2"},"state":"ACTIVE","etag":"1_facadbdd-fe0e-476c-8dd6-e3519ae267fa"}
+[debug] [2023-10-08T08:35:58.393Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/368243488504:getIamPolicy [none]
+[debug] [2023-10-08T08:35:59.349Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/368243488504:getIamPolicy 200
+[debug] [2023-10-08T08:35:59.349Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/368243488504:getIamPolicy {"version":1,"etag":"BwYGiU3GClY=","bindings":[{"role":"roles/editor","members":["serviceAccount:vueinstagram-6dc6b@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-368243488504@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-1byu7@vueinstagram-6dc6b.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-368243488504@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-368243488504@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-368243488504@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-1byu7@vueinstagram-6dc6b.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:tedstar7@gmail.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-1byu7@vueinstagram-6dc6b.iam.gserviceaccount.com"]}]}
