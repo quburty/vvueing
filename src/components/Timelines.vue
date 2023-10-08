@@ -19,15 +19,19 @@
             "
           />
         </v-col>
-        <span style="font-weight: 600; margin: 0 10px" class="text-title">{{
-          timeline.name
-        }}</span
-        ><span style="padding-left: 10px">1일전</span>
+        <v-col align="left">
+          <span style="font-weight: 600; margin: 0 10px" class="text-title">{{
+            timeline.name
+          }}</span>
+          <span style="padding-left: 10px">1일전</span>
+        </v-col>
+        <!-- <v-icon icon="fa:fas fa-lock"></v-icon> -->
         <IconComponent
           sort="fas"
           icon="ellipsis"
           class="timeline-icon"
           justify="end"
+          style="justify-self: end"
         ></IconComponent>
       </v-row>
       <v-img
@@ -53,7 +57,7 @@
         <v-col md="1">
           <IconComponent sort="far" icon="message"></IconComponent>
         </v-col>
-        <v-col md="1">
+        <v-col md="1" class="ml-auto mr-0">
           <IconComponent
             :sort="timeline.bookmark ? 'fas' : 'far'"
             icon="bookmark"

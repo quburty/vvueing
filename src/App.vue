@@ -1,22 +1,19 @@
 <template>
   <v-app>
     <v-main row wrap>
-      <v-navigation-drawer class="menu" style="border: 1px solid black">
+      <v-navigation-drawer class="menu">
         <v-list-item title="Vuestagram"></v-list-item>
         <v-divider></v-divider>
-        <router-link to="/home">
-          <v-list-item link title="홈">
-            <font-awesome-icon icon="fa-solid fa-house" />
+
+        <router-link to="/home" style="text-decoration: none; color: inherit">
+          <v-list-item link height="50px" align="left">
+            <font-awesome-icon icon="fa-solid fa-house" width="50px" /> 홈
           </v-list-item>
         </router-link>
-        <router-link to="/home">
-          <v-list-item link title="메세지">
-            <font-awesome-icon :icon="['far', 'message']" />
-          </v-list-item>
-        </router-link>
-        <router-link to="/about">
-          <v-list-item link title="프로필">
-            <font-awesome-icon :icon="['fas', 'user']" />
+
+        <router-link to="/about" style="text-decoration: none; color: inherit">
+          <v-list-item link height="50px" align="left">
+            <font-awesome-icon :icon="['fas', 'user']" width="50px" /> 프로필
           </v-list-item>
         </router-link>
       </v-navigation-drawer>
