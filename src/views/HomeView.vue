@@ -15,6 +15,7 @@
                 alt="thumbnail"
                 :src="user.thumbnail"
                 :aspect-ratio="1 / 1"
+                cover="true"
                 style="
                   border-radius: 50%;
                   border: linear-gradient(
@@ -107,7 +108,7 @@ export default defineComponent({
             doc.data().user.forEach((e) => {
               this.users.push({
                 name: e.name,
-                thumbnail: require("../assets/thumbnail.jpg"),
+                thumbnail: e.thumbnail,
               });
             });
           });
@@ -172,7 +173,7 @@ export default defineComponent({
       feedRef
         .update({
           feeds: firebase.firestore.FieldValue.arrayUnion({
-            name: "615_note",
+            name: "quburty",
             describe: msg,
             img: storagePath,
             likes: 0,

@@ -8,6 +8,7 @@
             :src="findUser(timeline.name)"
             :width="50"
             :aspect-ratio="1 / 1"
+            cover="true"
             style="
               border-radius: 50%;
               border: linear-gradient(
