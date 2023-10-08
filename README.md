@@ -1,9 +1,9 @@
 # vvueing
 
-This is copy-app of instagram.
-Used Vue3 Framework.
-Vuetify3
-Firebase (Database, Storage)
+This is copy-app of instagram.<br>
+Used Vue3 Framework.<br>
+Vuetify3 <br>
+Firebase (Database, Storage) <br>
 
 
 ## initial screen
